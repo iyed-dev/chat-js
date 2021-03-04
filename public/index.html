@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: grey;
+        }
+        p{
+            color: #FFFFFF;
+        }
+    </style>
+    <center>
+    <div id="messages"></div>
+    <form action="">
+        <br>
+        <input id="msg" autocomplete="off"/><button>Envoyez !</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function (){
+
+            var socket = io();
+
+            $("form").submit(function (e) {
+                e.preventDefault();
+
+                socket.emit("chat message", $("#msg").val() );
+                $("#msg").val("");
+                return false;
+            });
+
+            socket.on('chat message', function (msg) {
+                $("#messages").append($("<p>").text(msg));
+            });
+
+        });
+    </script>
+    </center>
+</body>
+</html>
