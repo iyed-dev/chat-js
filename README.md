@@ -18,3 +18,7 @@ cd /répertoire/du/fichier
 et écrivez ensuite 
 
 node index.js
+
+ensuite allez à l'adresse si-dessous 
+
+http://localhost:3000/
